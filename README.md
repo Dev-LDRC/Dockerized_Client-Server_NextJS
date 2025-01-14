@@ -140,8 +140,14 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 
 6. Execute os contêineres com Docker Compose da raiz do projeto:
 
-   ```bash
-   docker-compose up --build
+   ```powershell
+   docker compose up --build
+   ```
+
+   Se você não quiser que a aplicação não se prenda ao terminal execute o mesmo comando acima com a flag ``-d``, assim:
+
+   ```powershell
+   docker compose up -d --build
    ```
 
 <h2 align="center">PRONTO!!! AGORA VOCÊ ESTÁ COM O PROJETO SENDO EXECUTADO E ORQUESTRADO PELO DOCKER! 🤝😎🚀</h2>
