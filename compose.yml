@@ -1,0 +1,31 @@
+services:
+
+  client_app:
+    env_file:
+      - ./app_frontend/client_app/.env
+    build:
+      context: ./app_frontend/client_app
+      dockerfile: Dockerfile
+    container_name: consumer_client
+    ports:
+      - "3030:3030"
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: rebuild
+          path: ./app_frontend/client_app
+
+  server_app:
+    env_file:
+      - ./app_backend/api-service/.env
+    build:
+      context: ./app_backend/api-service
+      dockerfile: Dockerfile
+    container_name: api-backend
+    ports:
+      - "3131:3131"
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: rebuild
+          path: ./app_backend/api-service
