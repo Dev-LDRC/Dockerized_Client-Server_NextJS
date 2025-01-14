@@ -14,7 +14,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 
 ## Como Executar
 
->### <br/> ⚠ Por padrão o client-side está configurado na porta 3030 e o server-side na porta 3131 <br/><br/>
+> ### <br/> ⚠ Por padrão o client-side está configurado na porta 3030 e o server-side na porta 3131 <br/><br/>
 
 1. Clone o repositório:
 
@@ -39,7 +39,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
      NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>
      ```
 
-3. Configure em quais portas serão executadas pelo NextJS de ambos os arquivos `package.json` das pastas correspondente (client_app e api-service):
+3. Configure em quais portas serão executadas pelo NextJS de ambos os arquivos `package.json` das pastas correspondentes (`client_app` e `api-service`):
 
    - `./app_frontend/client_app/package.json`:
 
@@ -74,7 +74,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
      }
      ```
 
-4. Configure em quais portas serão exportas de ambos os arquivos `package.json` das pastas correspondente (client_app e api-service):
+4. Configure em quais portas do conteiner serão exportas de ambos os arquivos `Dockerfile` das pastas correspondentes (`client_app` e `api-service`):
 
    - `./app_frontend/client_app/Dockerfile`:
 
@@ -100,14 +100,52 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
      CMD [ "npm", "start" ]
      ```
 
-5. Execute os contêineres com Docker Compose da raiz do projeto:
+5. Configure em quais portas da sua maquina serão exportas no arquivo `compose.yml`:
+
+   - `./compose.yml`:
+
+     ```yml
+      services:
+
+         client_app:
+            env_file:
+               - ./app_frontend/client_app/.env
+            build:
+               context: ./app_frontend/client_app
+               dockerfile: Dockerfile
+            container_name: consumer_client
+            ports:
+               - "<your_client_side_port>:<your_client_side_port>"
+            restart: unless-stopped
+            develop:
+               watch:
+               - action: rebuild
+                  path: ./app_frontend/client_app
+
+         server_app:
+            env_file:
+               - ./app_backend/api-service/.env
+            build:
+               context: ./app_backend/api-service
+               dockerfile: Dockerfile
+            container_name: api-backend
+            ports:
+               - "<your_server_side_port>:<your_server_side_port>"
+            restart: unless-stopped
+            develop:
+               watch:
+               - action: rebuild
+                  path: ./app_backend/api-service
+     ```
+
+6. Execute os contêineres com Docker Compose da raiz do projeto:
 
    ```bash
    docker-compose up --build
    ```
 
-<h2 style="text-align: center">PRONTO!!! AGORA VOCÊ ESTÁ COM O PROJETO SENDO EXECUTADO E ORQUESTRADO PELO DOCKER! 🤝😎🚀</h2>
+<h2 align="center">PRONTO!!! AGORA VOCÊ ESTÁ COM O PROJETO SENDO EXECUTADO E ORQUESTRADO PELO DOCKER! 🤝😎🚀</h2>
 
 <p style="font-size:20.5px;"><strong>Contribuição:</strong></p>
 
->### <br/> - Se você estiver com tempo disponivel, gostaria de um feedback seu, critica, recomendações, seja 100% sincero(a). 🤝😉<br/><br/> - Quer contribuir com este projeto? se sim, faça um fork, crie uma branch e envie um pull request. 👊 <br/><br/>
+> ### <br/> - Se você estiver com tempo disponivel, gostaria de um feedback seu, critica, recomendações, seja 100% sincero(a). 🤝😉<br/><br/> - Quer contribuir com este projeto? se sim, faça um fork, crie uma branch e envie um pull request. 👊 <br/><br/>
