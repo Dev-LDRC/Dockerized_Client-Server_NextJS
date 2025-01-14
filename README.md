@@ -29,7 +29,8 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
    - `./app_frontend/client_app/.env`:
 
      ```JS
-     NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>   NEXT_PUBLIC_SERVER_PORT = <your_server_side_port>
+     NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>
+     NEXT_PUBLIC_SERVER_PORT = <your_server_side_port>
      ```
 
    - `./app_backend/api-service/.env`:
