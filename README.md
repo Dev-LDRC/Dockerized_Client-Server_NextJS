@@ -152,6 +152,6 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 
 <h2 align="center">PRONTO!!! AGORA VOCÊ ESTÁ COM O PROJETO SENDO EXECUTADO E ORQUESTRADO PELO DOCKER! 🤝😎🚀</h2>
 
-<p style="font-size:24px;"><strong>Contribuição:</strong></p>
+### Contribuição:
 
 > ### <br/> - Se você estiver com tempo disponivel, gostaria de um feedback seu, critica, recomendações, seja 100% sincero(a). 🤝😉<br/><br/> - Quer contribuir com este projeto? se sim, faça um fork, crie uma branch e envie um pull request. 👊 <br/><br/>
