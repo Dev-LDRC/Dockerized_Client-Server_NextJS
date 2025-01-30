@@ -14,7 +14,7 @@ export default function Home() {
 
     toast( "Link copiado com Sucesso!", {
       position: "top-center",
-      autoClose: 1250,
+      autoClose: 1750,
       hideProgressBar: false,
       closeOnClick: false,
       pauseOnHover: true,
