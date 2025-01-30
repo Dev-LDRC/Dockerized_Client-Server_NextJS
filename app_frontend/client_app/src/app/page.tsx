@@ -22,7 +22,7 @@ export default function Home() {
 
       const res_json = await res_api.json()
 
-      const res_output = JSON.stringify(res_json, null, 2)
+      const res_output = JSON.stringify(res_json, null, 3)
 
       set_current_output_res( res_output )
 
@@ -82,13 +82,13 @@ export default function Home() {
 
           <div className="w-3/4">
 
-            <div className="bg-orange-700 py-2 px-4 rounded-t-md text-gray-100">
+            <div className="bg-orange-500 py-2 px-4 rounded-t-md text-gray-100">
 
-              current output response
+              Current output response
 
             </div>
 
-            <div className="bg-orange-500 text-gray-200 p-4 h-96 rounded-b-md overflow-auto scrollbar_main">
+            <div className="bg-orange-700 text-gray-200 p-4 h-96 rounded-b-md overflow-auto scrollbar_main">
 
               {LoadReq ? (
 
@@ -100,7 +100,7 @@ export default function Home() {
 
               ) : (
 
-                <p>{current_output_res}</p>
+                <pre>{current_output_res}</pre>
 
               )}
 
