@@ -5,150 +5,153 @@ Este projeto consiste em dois aplicativos Next.js separados, organizados para fu
 - **Client App:** Responsável por buscar e consumir as APIs do servidor.
 - **Server App:** Distribui as APIs usadas exclusivamente pelo cliente.
 
-## Pré-requisitos
+# Pré-requisitos
 
 Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas:
 
 - [Docker](https://www.docker.com/) / [Docker Compose](https://docs.docker.com/compose/)
 - [Git](https://git-scm.com/)
 
-## Como Executar
-
 > ### <br/> ⚠ Por padrão o client-side está configurado na porta 3030 e o server-side na porta 3131 <br/><br/>
 
-1. Clone o repositório:
+# Como Executar
+
+## 1. Clone o repositório:
 
    ```bash
    git clone https://github.com/Dev-LDRC/Dockerized_Client-Server_NextJS.git
    ```
 
-2. Configure as variáveis de ambiente:
+## CASO VOCÊ DESEJE ALTERAR AS PORTAS:
+   1. Configure as variáveis de ambiente:
 
-   ### Adicione os arquivos `.env` para o cliente e servidor nas pastas correspondentes<br/>(`client_app` e `api-service`):
+      ### Adicione os arquivos `.env` para o cliente e servidor nas pastas correspondentes<br/>(`client_app` e `api-service`):
 
-   - `./app_frontend/client_app/.env`:
+      - `./app_frontend/client_app/.env`:
 
-     ```JS
-     NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>
-     NEXT_PUBLIC_SERVER_PORT = <your_server_side_port>
-     ```
+      ```JS
+      NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>
+      NEXT_PUBLIC_SERVER_PORT = <your_server_side_port>
+      ```
 
-   - `./app_backend/api-service/.env`:
-     ```JS
-     NEXT_PUBLIC_SERVER_PORT = <your_server_side_port>
-     NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>
-     ```
+      - `./app_backend/api-service/.env`:
+      ```JS
+      NEXT_PUBLIC_SERVER_PORT = <your_server_side_port>
+      NEXT_PUBLIC_CLIENT_PORT = <your_client_side_port>
+      ```
 
-3. Configure em quais portas serão executadas pelo NextJS de ambos os arquivos `package.json` das pastas correspondentes (`client_app` e `api-service`):
+   2. Configure em quais portas serão executadas pelo NextJS de ambos os arquivos `package.json` das pastas correspondentes (`client_app` e `api-service`):
 
-   - `./app_frontend/client_app/package.json`:
+      - `./app_frontend/client_app/package.json`:
 
-     ```json
-     {
-        "name": "client_app",
-        "version": "0.1.0",
-        "private": true,
-        "scripts": {
-           "dev": "next dev -p <your_client_side_port>",
-           "build": "next build",
-           "start": "next start -p <your_client_side_port>",
-           "lint": "next lint"
-        },
-        ...
-     }
-     ```
+      ```json
+      {
+         "name": "client_app",
+         "version": "0.1.0",
+         "private": true,
+         "scripts": {
+            "dev": "next dev -p <your_client_side_port>",
+            "build": "next build",
+            "start": "next start -p <your_client_side_port>",
+            "lint": "next lint"
+         },
+         ...
+      }
+      ```
 
-   - `./app_backend/api-service/package.json`:
-     ```json
-     {
-        "name": "api-service",
-        "version": "0.1.0",
-        "private": true,
-        "scripts": {
-           "dev": "next dev -p <your_server_side_port>",
-           "build": "next build",
-           "start": "next start -p <your_server_side_port>",
-           "lint": "next lint"
-        },
-        ...
-     }
-     ```
+      - `./app_backend/api-service/package.json`:
+      ```json
+      {
+         "name": "api-service",
+         "version": "0.1.0",
+         "private": true,
+         "scripts": {
+            "dev": "next dev -p <your_server_side_port>",
+            "build": "next build",
+            "start": "next start -p <your_server_side_port>",
+            "lint": "next lint"
+         },
+         ...
+      }
+      ```
 
-4. Configure em quais portas do conteiner serão exportas de ambos os arquivos `Dockerfile` das pastas correspondentes (`client_app` e `api-service`):
+   3. Configure em quais portas do conteiner serão exportas de ambos os arquivos `Dockerfile` das pastas correspondentes (`client_app` e `api-service`):
 
-   - `./app_frontend/client_app/Dockerfile`:
+      - `./app_frontend/client_app/Dockerfile`:
 
-     ```Dockerfile
-     ...
+      ```Dockerfile
+      ...
 
-     RUN npm install --only=production
+      RUN npm install --only=production
 
-     EXPOSE <your_client_side_port>
+      EXPOSE <your_client_side_port>
 
-     CMD [ "npm", "start" ]
-     ```
+      CMD [ "npm", "start" ]
+      ```
 
-   - `./app_backend/api-service/Dockerfile`:
+      - `./app_backend/api-service/Dockerfile`:
 
-     ```Dockerfile
-     ...
+      ```Dockerfile
+      ...
 
-     RUN npm install --only=production
+      RUN npm install --only=production
 
-     EXPOSE <your_server_side_port>
+      EXPOSE <your_server_side_port>
 
-     CMD [ "npm", "start" ]
-     ```
+      CMD [ "npm", "start" ]
+      ```
 
-5. Configure em quais portas da sua maquina serão exportas no arquivo `compose.yml`:
+   4. Configure em quais portas da sua maquina serão exportas no arquivo `compose.yml`:
 
-   - `./compose.yml`:
+      - `./compose.yml`:
 
-     ```yml
-      services:
+      ```yml
+         services:
 
-         client_app:
-            env_file:
-               - ./app_frontend/client_app/.env
-            build:
-               context: ./app_frontend/client_app
-               dockerfile: Dockerfile
-            container_name: consumer_client
-            ports:
-               - "<your_client_side_port>:<your_client_side_port>"
-            restart: unless-stopped
-            develop:
-               watch:
-               - action: rebuild
-                  path: ./app_frontend/client_app
+            client_app:
+               env_file:
+                  - ./app_frontend/client_app/.env
+               build:
+                  context: ./app_frontend/client_app
+                  dockerfile: Dockerfile
+               container_name: consumer_client
+               ports:
+                  - "<your_client_side_port>:<your_client_side_port>"
+               restart: unless-stopped
+               develop:
+                  watch:
+                  - action: rebuild
+                     path: ./app_frontend/client_app
 
-         server_app:
-            env_file:
-               - ./app_backend/api-service/.env
-            build:
-               context: ./app_backend/api-service
-               dockerfile: Dockerfile
-            container_name: api-backend
-            ports:
-               - "<your_server_side_port>:<your_server_side_port>"
-            restart: unless-stopped
-            develop:
-               watch:
-               - action: rebuild
-                  path: ./app_backend/api-service
-     ```
+            server_app:
+               env_file:
+                  - ./app_backend/api-service/.env
+               build:
+                  context: ./app_backend/api-service
+                  dockerfile: Dockerfile
+               container_name: api-backend
+               ports:
+                  - "<your_server_side_port>:<your_server_side_port>"
+               restart: unless-stopped
+               develop:
+                  watch:
+                  - action: rebuild
+                     path: ./app_backend/api-service
+      ```
 
-6. Execute os contêineres com Docker Compose da raiz do projeto:
+---
 
-   ```powershell
-   docker compose up --build
-   ```
+## 2. Execute os contêineres com Docker Compose da raiz do projeto:
 
-   Se você não quiser que a aplicação não se prenda ao terminal execute o mesmo comando acima com a flag ``-d``, assim:
+```powershell
+docker compose up --build
+```
 
-   ```powershell
-   docker compose up -d --build
-   ```
+Se você não quiser que a aplicação não se prenda ao terminal execute o mesmo comando acima com a flag ``-d``, assim:
+
+```powershell
+docker compose up -d --build
+```
 
 <h2 align="center">PRONTO!!! AGORA VOCÊ ESTÁ COM O PROJETO SENDO EXECUTADO E ORQUESTRADO PELO DOCKER! 🤝😎🚀</h2>
 
