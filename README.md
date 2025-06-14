@@ -12,7 +12,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 - [Docker](https://www.docker.com/) / [Docker Compose](https://docs.docker.com/compose/)
 - [Git](https://git-scm.com/)
 
-> ### <br/> ⚠ Por padrão o client-side está configurado na porta 3030 e o server-side na porta 3131 <br/><br/>
+> ### <br/> ⚠ Por padrão o `client-side está configurado na porta 3030` e o `server-side na porta 3131` <br/><br/>
 
 # 📦 Como rodar localmente
 
@@ -21,11 +21,13 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
    ```bash
    git clone https://github.com/Dev-LDRC/Dockerized_Client-Server_NextJS.git
    ```
+> ### <br/> ⚠ CASO NÃO QUEIRA ALTERAR AS PORTAS, [PULE A PROXIMA ETAPA](https://github.com/Dev-LDRC/Dockerized_Client-Server_NextJS?tab=readme-ov-file#2-execute-os-cont%C3%AAineres-com-docker-compose-da-raiz-do-projeto) <br/><br/>
 
-## CASO VOCÊ DESEJE ALTERAR AS PORTAS:
+## CASO DESEJE ALTERAR AS PORTAS:
+
    1. Configure as variáveis de ambiente:
 
-      ### Adicione os arquivos `.env` para o cliente e servidor nas pastas correspondentes<br/>(`client_app` e `api-service`):
+      ### Configure os arquivos `.env` para o cliente e servidor nas pastas correspondentes<br/>(`client_app` e `api-service`):
 
       - `./app_frontend/client_app/.env`:
 
