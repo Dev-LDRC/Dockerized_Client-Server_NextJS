@@ -21,7 +21,13 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
    ```bash
    git clone https://github.com/Dev-LDRC/Dockerized_Client-Server_NextJS.git
    ```
-> ### <br/> ⚠ CASO NÃO QUEIRA ALTERAR AS PORTAS, [PULE A PROXIMA ETAPA](https://github.com/Dev-LDRC/Dockerized_Client-Server_NextJS?tab=readme-ov-file#2-execute-os-cont%C3%AAineres-com-docker-compose-da-raiz-do-projeto) <br/><br/>
+> ### <br/> CASO NÃO QUEIRA ALTERAR AS PORTAS, [PULE A PROXIMA ETAPA](https://github.com/Dev-LDRC/Dockerized_Client-Server_NextJS?tab=readme-ov-file#3-execute-os-cont%C3%AAineres-com-docker-compose-da-raiz-do-projeto) <br/><br/>
+
+## 2. Navegue até a pasta do projeto:
+
+   ```bash
+   cd Dockerized_Client-Server_NextJS
+   ```
 
 ## CASO DESEJE ALTERAR AS PORTAS:
 
@@ -143,7 +149,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 
 ---
 
-## 2. Execute os contêineres com Docker Compose da raiz do projeto:
+## 3. Execute os contêineres com Docker Compose da raiz do projeto:
 
 ```powershell
 docker compose up --build
