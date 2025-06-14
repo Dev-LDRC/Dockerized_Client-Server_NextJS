@@ -14,7 +14,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 
 > ### <br/> ⚠ Por padrão o client-side está configurado na porta 3030 e o server-side na porta 3131 <br/><br/>
 
-# Como Executar
+# 📦 Como rodar localmente
 
 ## 1. Clone o repositório:
 
